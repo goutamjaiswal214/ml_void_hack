@@ -1,3 +1,4 @@
+import testdb
 import os
 import cv2
 from PIL import Image
@@ -27,14 +28,18 @@ from tensorflow.python.keras import backend as K
 tf.enable_eager_execution()
 print("Eager execution: {}".format(tf.executing_eagerly()))
 
-
+img1,img2=testdb.getI()
+print(img1)
+print(img2)
+content_path = 'C:\\Users\\GOUTAM JAISWAL\\Desktop\\Final\\tmp_img\\nst\\'+img1
+style_path = 'C:\\Users\\GOUTAM JAISWAL\\Desktop\\Final\\tmp_img\\nst\\'+img2
 
 # Set up some global values here
-content_path = 'C:\\Users\\GOUTAM JAISWAL\\Desktop\\Final\\tmp_img\\nst\\1.jpg'
-style_path = 'C:\\Users\\GOUTAM JAISWAL\\Desktop\\Final\\tmp_img\\nst\\Vassily_Kandinsky,_1913_-_Composition_7.jpg'
-face_cascade=cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
-gray=cv2.cvtColor(cv2.imread(content_path),cv2.COLOR_BGR2GRAY)
-faces=face_cascade.detectMultiScale(gray,1.3,5)
+#content_path = 'C:\\Users\\GOUTAM JAISWAL\\Desktop\\Final\\tmp_img\\nst\\1.jpg'
+#style_path = 'C:\\Users\\GOUTAM JAISWAL\\Desktop\\Final\\tmp_img\\nst\\Vassily_Kandinsky,_1913_-_Composition_7.jpg'
+#face_cascade=cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+#gray=cv2.cvtColor(cv2.imread(content_path),cv2.COLOR_BGR2GRAY)
+"""faces=face_cascade.detectMultiScale(gray,1.3,5)
 x1=0
 y1=0
 w1=0
@@ -44,7 +49,7 @@ for(x,y,w,h) in faces:
     h1,w1=img2.shape[:2]
     x1=x
     y1=y
-
+"""
 def load_img(path_to_img):
   max_dim = 512
   img = Image.open(path_to_img)
@@ -320,10 +325,10 @@ def run_style_transfer(content_path,
       plot_img = init_image.numpy()
       plot_img = deprocess_img(plot_img)
       
-      h2,w2=img2.shape[:2]
-      plot_img.resize((w2,h2),Image.ANTIALIAS)
-      img9=cv2.imread(content_path)
-      plot_img[y1:y1+h2,x1:x1+w2]=img2
+#      h2,w2=img2.shape[:2]
+ #     plot_img=plot_img.resize((w2,h2),Image.ANTIALIAS)
+  #    img9=cv2.imread(content_path)
+   #   plot_img[y1:y1+h2,x1:x1+w2]=img2
 
       imgs.append(plot_img)
       IPython.display.clear_output(wait=True)
